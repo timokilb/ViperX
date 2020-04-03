@@ -6,5 +6,6 @@ target 'ViperX' do
   use_frameworks!
   pod 'Alamofire', '~> 5.0'
   # Pods for ViperX
+  pod 'SwiftyJSON', '~> 4.0'
 
 end

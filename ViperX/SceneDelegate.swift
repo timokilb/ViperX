@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let mainScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: mainScene.coordinateSpace.bounds)
         window?.windowScene = mainScene
-        window?.rootViewController = FoodListViewController()
+        window?.rootViewController = TabBarController()
         window?.makeKeyAndVisible()
     }
 

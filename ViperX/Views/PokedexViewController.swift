@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FoodListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class PokedexViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
 
     let addButton = UIButton()
@@ -16,13 +16,13 @@ class FoodListViewController: UIViewController, UITableViewDelegate, UITableView
     let table = UITableView()
     let tableCell = UITableViewCell()
     let lable = UILabel()
-    var data: [Food] = [Food(name: "Jackson", calories: 50), Food(name: "Knorrr", calories: 50)]
+    var data: [Pokemon] = []
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBlue//UIColor(red: 45, green: 185, blue: 185, alpha: 0.5)
-        title = "App Nutte"
+        title = "A"
         setupLable()
         setupAddButton()
         setupTable()
@@ -38,9 +38,9 @@ class FoodListViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        // Ask for a cell of the appropriate type.
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FoodCell") as! FoodCell
-        let food = data[indexPath.row]
-        cell.set(food: food)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonCell") as! PokemonCell
+        let pokemon = data[indexPath.row]
+        cell.set(pokemon: pokemon)
         return cell
     }
     
@@ -56,7 +56,7 @@ class FoodListViewController: UIViewController, UITableViewDelegate, UITableView
         table.rowHeight = 50
         table.clipsToBounds = true
         table.layer.cornerRadius = 8
-        table.register(FoodCell.self, forCellReuseIdentifier: "FoodCell")
+        table.register(PokemonCell.self, forCellReuseIdentifier: "PokemonCell")
         setTableConstraints()
     }
     
@@ -73,7 +73,7 @@ class FoodListViewController: UIViewController, UITableViewDelegate, UITableView
     // lable
     func setupLable() {
         lable.backgroundColor = .white
-        lable.text = "My Groceries"
+        lable.text = "Pokedex"
         lable.textColor = .systemBlue
         lable.textAlignment = .center
         lable.layer.cornerRadius = 8
@@ -93,7 +93,7 @@ class FoodListViewController: UIViewController, UITableViewDelegate, UITableView
     // text field
     func setupTextField() {
         textField.backgroundColor = .white
-        textField.text = "Enter a grocery"
+        textField.text = "Name a pokemon"
         textField.textColor = .gray
         textField.textAlignment = .left
         textField.layer.cornerRadius = 8
@@ -131,11 +131,11 @@ class FoodListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @objc func addButtonTapped(){
-        let food = Food(name: textField.text ?? "Jackson", calories: 50)
-        data.append(food)
+        let pokemon = Pokemon(id: "duarschloch", name: "Hurensohnpokemon")
+        data.append(pokemon)
         table.reloadData()
         textField.endEditing(true)
-        NetworkingService.execute()
+        NetworkingService.execute(from: "https://pokeapi.co/api/v2/pokemon/1")
     }
 }
 

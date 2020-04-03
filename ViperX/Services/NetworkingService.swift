@@ -8,15 +8,19 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 let url = "https://jsonplaceholder.typicode.com/todos/1"
 
 
 class NetworkingService{
     
-    static func execute() {
-        AF.request("https://httpbin.org/get").response { (response) in
-            debugPrint(response)
-        }
+    static func execute(from endpoint: String) {
+        AF.request(endpoint).responseData(completionHandler: { (data) in
+            let json = JSON(data)
+            print(type(of: data))
+            print(json[0])
+        })
     }
 }
+
