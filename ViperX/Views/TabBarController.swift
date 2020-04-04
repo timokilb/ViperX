@@ -15,6 +15,9 @@ class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard container != nil else {
+            fatalError("This view needs a persistent container.")
+        }
         setViewControllers([PokedexViewController(), TestViewController()], animated: false)
         selectedIndex = 0
     }

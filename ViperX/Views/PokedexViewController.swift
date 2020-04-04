@@ -8,10 +8,13 @@
 
 import UIKit
 import CoreData
+import Alamofire
+import SwiftyJSON
 
 class PokedexViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
 
+    let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var container: NSPersistentContainer!
     
     let addButton = UIButton()
@@ -141,7 +144,11 @@ class PokedexViewController: UIViewController, UITableViewDelegate, UITableViewD
     @objc func addButtonTapped(){
         table.reloadData()
         textField.endEditing(true)
-        NetworkingService.execute(from: "https://pokeapi.co/api/v2/pokemon/1")
+        AF.request("https://pokeapi.co/api/v2/pokemon/1").responseJSON { (response) in
+            let pokemonJSON: JSON = JSON(response.value)
+            let pokemon = NSEntityDescription.insertNewObject(forEntityName: "Pokemon", into: self.managedObjectContext) as! Pokemon
+            debugPrint(JSON(response.value))
+        }
     }
 }
 
