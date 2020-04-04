@@ -1,4 +1,5 @@
 .DS_Store
+ViperX/.DS_Store
 *.xcodeproj
 *.xcworkspace
 Pods/

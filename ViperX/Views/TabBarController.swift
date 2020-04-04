@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import CoreData
 
 class TabBarController: UITabBarController {
+    
+    var container: NSPersistentContainer!
     
     override func viewDidLoad() {
         super.viewDidLoad()

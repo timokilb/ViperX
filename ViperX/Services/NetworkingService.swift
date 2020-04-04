@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import CoreData
 
 let url = "https://jsonplaceholder.typicode.com/todos/1"
 
@@ -18,8 +19,8 @@ class NetworkingService{
     static func execute(from endpoint: String) {
         AF.request(endpoint).responseJSON { (response) in
             let pokemonJSON: JSON = JSON(response.value)
-            var pokemon = Pokemon(id: pokemonJSON["id"].stringValue, name: pokemonJSON["name"].stringValue)
-            debugPrint(pokemon)
+            //var pokemon = Pokemon(id: pokemonJSON["id"].stringValue, name: pokemonJSON["name"].stringValue)
+            //let pokemon = NSEntityDescription.insertNewObject(forEntityName: "Pokemon", into: managedObjectContext) as! Pokemon
         }
     }
 }

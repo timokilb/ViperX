@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import CoreData
 
 class PokedexViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
 
+    var container: NSPersistentContainer!
+    
     let addButton = UIButton()
     let textField = UITextField()
     let table = UITableView()
@@ -29,6 +32,11 @@ class PokedexViewController: UIViewController, UITableViewDelegate, UITableViewD
         setupTextField()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let nextVC = segue.destination as? PokedexViewController {
+            nextVC.container = container
+        }
+    }
     
     // table
     
