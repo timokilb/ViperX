@@ -131,8 +131,6 @@ class PokedexViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @objc func addButtonTapped(){
-        let pokemon = Pokemon(id: "duarschloch", name: "Hurensohnpokemon")
-        data.append(pokemon)
         table.reloadData()
         textField.endEditing(true)
         NetworkingService.execute(from: "https://pokeapi.co/api/v2/pokemon/1")
